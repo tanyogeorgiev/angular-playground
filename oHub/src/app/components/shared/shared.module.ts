@@ -4,6 +4,7 @@ import { RouterModule } from "@angular/router";
 
 import { sharedComponents } from './index';
 
+
 @NgModule({
   declarations: [
     ...sharedComponents
@@ -11,9 +12,10 @@ import { sharedComponents } from './index';
   imports: [
     CommonModule,
     RouterModule
+
   ],
   exports: [
     ...sharedComponents
   ]
 })
-export class SharedModule {  }
+export class SharedModule { }

@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row   justify-content-center align-items-center">
+    <h1 class=" ">Create new item!</h1>
+
+  </div>
+
+  <div class="row  justify-content-center align-items-center">
+    <form (ngSubmit)="onSubmit(itemForm)" class=" justify-content-center" #itemForm="ngForm">
+      <div class="input-group">
+        <label for="Name" class="sr-only">Mail</label>
+        <input required type="text" id="Name" name="Name" ngModel class="form-control mb-2 mr-sm-2" placeholder="Client name...">
+      </div>
+      <div class="input-group">
+        <label for="Country" class="sr-only">Mail</label>
+        <input required type="text" id="Country" name="Country" ngModel class="form-control mb-2 mr-sm-2" placeholder="Country...">
+      </div>
+      <div class="input-group">
+        <label for="City" class="sr-only">Mail</label>
+        <input required type="password" id="City" name="City" ngModel class="form-control mb-2 mr-sm-2" placeholder="City...">
+      </div>
+      <div class="input-group">
+        <label for="Bulstat" class="sr-only">Mail</label>
+        <input required type="number" id="Bulstat" name="Bulstat" ngModel class="form-control mb-2 mr-sm-2" placeholder="Bulstat...">
+      </div>
+      <div class="input-group">
+        <label for="Iiban" class="sr-only">Mail</label>
+        <input required type="text" id="Iiban" name="Iiban" ngModel class="form-control mb-2 mr-sm-2" placeholder="Iiban...">
+      </div>
+      <button class="btn btn-primary mb-2" type="submit" [disabled]="!itemForm.valid">Register</button>
+    </form>
+
+  </div>
+
+</div>

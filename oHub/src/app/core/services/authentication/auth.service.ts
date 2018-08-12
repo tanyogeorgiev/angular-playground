@@ -31,7 +31,7 @@ export class AuthService {
             localStorage.setItem('token', token);
           })
 
-        this.toastr.success('Signed in', 'SUCCESS!!');
+        this.toastr.success('Welcome back to the oHub! ', 'SUCCESS!!');
         this.router.navigate(['/']);
       })
       .catch(err => {
@@ -47,8 +47,8 @@ export class AuthService {
         registerModel.email,
         registerModel.password)
       .then(() => {
-        this.toastr.success('Signed up', 'SUCCESS!!');
-        this.router.navigate(['/auth/signin']);
+        this.toastr.success('You are ready! Come and log in!', 'SUCCESS!!');
+        this.router.navigate(['/auth/login']);
       })
       .catch(err => {
         this.toastr.error(err.message, 'Warning!');
@@ -58,6 +58,9 @@ export class AuthService {
   logout(): void {
     firebase.auth().signOut();
     this.token = null;
+
+
+    this.router.navigate([""]);
   }
   getToken() {
     firebase
@@ -69,8 +72,13 @@ export class AuthService {
 
     return this.token;
   }
-  isLoggedIn(): boolean {
+
+  isAuthenticated(): boolean {
     return this.token != null;
+  }
+
+  isAdmin(): boolean {
+    return true;
   }
 
   tryNavigate() {

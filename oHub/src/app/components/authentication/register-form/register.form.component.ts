@@ -12,11 +12,13 @@ export class RegisterFormComponent implements OnInit {
   ngOnInit() { }
 
   onSubmit(formData: NgForm) {
+    console.log(formData.value)
+
     const registerModel: RegisterInputModel = {
       email: formData.value.email,
       password: formData.value.password
     }
-    
+
     this.authService.register(registerModel);
   }
 }
