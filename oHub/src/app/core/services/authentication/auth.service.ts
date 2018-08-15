@@ -56,12 +56,13 @@ export class AuthService {
   }
 
   logout(): void {
+
     firebase.auth().signOut();
+    localStorage.clear()
     this.token = null;
-
-
-    this.router.navigate([""]);
+    this.router.navigate([""])
   }
+
   getToken() {
     firebase
       .auth().currentUser

@@ -1,31 +1,39 @@
 <div class="container">
   <div class="row   justify-content-center align-items-center">
-    <h1 class=" ">Create new item!</h1>
+    <h1 class=" ">Create new CLient!</h1>
 
   </div>
 
-  <div class="row  justify-content-center align-items-center">
+  <div class="row  justify-content-center  ">
+
     <form (ngSubmit)="onSubmit(itemForm)" class=" justify-content-center" #itemForm="ngForm">
-      <div class="input-group">
-        <label for="Name" class="sr-only">Mail</label>
-        <input required type="text" id="Name" name="Name" ngModel class="form-control mb-2 mr-sm-2" placeholder="Client name...">
+
+      <div class="col-6 ">
+        <label for="Name" class="col-form-label col-form-label-sm">Client name</label>
+        <input required type="text" id="Name" name="Name" ngModel class="form-control form-control-sm" placeholder="Client name...">
+
+        <label for="country" class="col-form-label col-form-label-sm">Country</label>
+        <input required type="text" id="country" name="country" ngModel class="form-control form-control-sm" placeholder="Client name...">
+
+        <label for="city" class="col-form-label col-form-label-sm">City</label>
+        <input required type="text" id="city" name="city" ngModel class="form-control form-control-sm" placeholder="Client name...">
       </div>
-      <div class="input-group">
-        <label for="Country" class="sr-only">Mail</label>
-        <input required type="text" id="Country" name="Country" ngModel class="form-control mb-2 mr-sm-2" placeholder="Country...">
+
+
+      <div class="form-group  col-6">
+        <label for="address" class="col-form-label col-form-label-sm">Address</label>
+        <input required type="text" id="address" name="address" ngModel class="form-control form-control-sm" placeholder="Client name...">
+
+
+        <label for="bulstat" class="col-form-label col-form-label-sm">Bulstat</label>
+        <input required type="text" id="bulstat" name="bulstat" ngModel class="form-control form-control-sm" placeholder="Client name...">
+
+
+
+        <label for="iban" class="col-form-label col-form-label-sm">IBAN</label>
+        <input required type="text" id="iban" name="iban" ngModel class="form-control form-control-sm" placeholder="Client name...">
       </div>
-      <div class="input-group">
-        <label for="City" class="sr-only">Mail</label>
-        <input required type="password" id="City" name="City" ngModel class="form-control mb-2 mr-sm-2" placeholder="City...">
-      </div>
-      <div class="input-group">
-        <label for="Bulstat" class="sr-only">Mail</label>
-        <input required type="number" id="Bulstat" name="Bulstat" ngModel class="form-control mb-2 mr-sm-2" placeholder="Bulstat...">
-      </div>
-      <div class="input-group">
-        <label for="Iiban" class="sr-only">Mail</label>
-        <input required type="text" id="Iiban" name="Iiban" ngModel class="form-control mb-2 mr-sm-2" placeholder="Iiban...">
-      </div>
+
       <button class="btn btn-primary mb-2" type="submit" [disabled]="!itemForm.valid">Register</button>
     </form>
 

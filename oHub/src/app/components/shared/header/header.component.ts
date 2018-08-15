@@ -35,7 +35,7 @@ export class HeaderComponent implements OnInit {
     //   : this.dropdownMenu = "dropdown-menu show";
   }
 
-  logout() {
+  Logout() {
     this.authService.logout()
 
   }

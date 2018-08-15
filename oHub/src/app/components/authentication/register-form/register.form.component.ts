@@ -9,7 +9,9 @@ import { AuthService } from '../../../core/services/authentication/auth.service'
 export class RegisterFormComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log(this)
+  }
 
   onSubmit(formData: NgForm) {
     console.log(formData.value)

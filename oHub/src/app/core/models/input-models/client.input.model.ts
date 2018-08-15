@@ -6,6 +6,6 @@ export class ClientInputModel {
     public city: string,
     public address: string,
     public bulstat: number,
-    public : string,
+    public iban: string
   ) { }
 }

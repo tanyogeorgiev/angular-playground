@@ -10,6 +10,7 @@ export class LoginFormComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
+
   }
 
   onSubmit(formData: NgForm) {

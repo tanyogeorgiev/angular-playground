@@ -7,6 +7,7 @@ import { RegisterFormComponent } from './components/authentication/register-form
 import { ClientListComponent } from './components/client/client-list/client-list.component';
 import { ClientComponent } from './components/client/client/client.component';
 import { ClientEditComponent } from './components/client/client-edit/client-edit.component';
+import { ClientNewComponent } from './components/client/client-new/client-new.component';
 
 
 const routes: Routes = [
@@ -18,16 +19,16 @@ const routes: Routes = [
       // { path: 'edit/:id', component: RecipeEditComponent },
       //  { path: 'detail/:id', component: RecipeDetailComponent},
       //  { path: 'list', component: RecipeListComponent }
-    ], canActivate: [AuthGuard]
+    ]//, canActivate: [AuthGuard]
   },
   {
     path: 'clients', children: [
       { path: '', component: ClientListComponent },
-      { path: 'new', component: ClientComponent },
+      { path: 'new', component: ClientNewComponent },
       { path: 'edit/:id', component: ClientEditComponent },
       // { path: 'detail/:id', component: RecipeDetailComponent},
       { path: 'list', component: ClientListComponent }
-    ], canActivate: [AuthGuard]
+    ]//, canActivate: [AuthGuard]
   },
   {
     path: 'auth', children: [
