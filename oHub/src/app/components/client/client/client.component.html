@@ -1,25 +1,4 @@
-<div class="container ">
-  <div class="row   justify-content-center align-items-center">
-    <h1 class=" ">Log in to the oHub system!</h1>
-
-  </div>
-  <div class="row   justify-content-center align-items-center">
-
-    <h5>Welcome, please fill the fields and dive into the oHub!</h5>
-  </div>
-  <div class="row  justify-content-center align-items-center">
-
-    <form (ngSubmit)="onSubmit(loginForm)" class="form-inline justify-content-center" #loginForm="ngForm">
-
-      <div class="input-group mb-2 mr-sm-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text">@</div>
-        </div>
-        <input required type="email" id="email" name="email" ngModel class="form-control">
-      </div>
-      <label for="password" class="sr-only">Mail</label>
-      <input required type="password" id="password" name="password" ngModel class="form-control mb-2 mr-sm-2" placeholder="Password...">
-      <button class="btn btn-primary mb-2" type="submit" [disabled]="!loginForm.valid">Log In</button>
-    </form>
-  </div>
-</div>
+<th scope="row">{{client.name}}</th>
+<td>{{client.bulstat}}</td>
+<td>{{client.country}}</td>
+<td>More details!</td>

@@ -1,0 +1,6 @@
+body {   background-repeat: no-repeat;
+  background-image: url("../assets/bckgrnd.jpg");
+  background-size: cover;
+  background-position: center top;
+  height: -webkit-fill-available;
+}

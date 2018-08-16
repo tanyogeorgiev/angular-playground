@@ -6,13 +6,17 @@ import {
   RouterStateSnapshot
 } from "@angular/router";
 import { AuthService } from "../../services/authentication/auth.service";
+import { ToastrService } from "ngx-toastr";
 
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
+
+
   ) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -22,13 +26,14 @@ export class AuthGuard implements CanActivate {
   checkIfLogged(url: string) {
 
     if (this.authService.isAuthenticated()) {
-      console.log(' LOGGED')
+
       return true;
     }
 
     this.authService.redirectUrl = url;
-    this.router.navigate(["/login"]);
-    console.log('notlogged')
+    this.toastr.error('You don\'t have authorization!', 'Warning!');
+    this.router.navigate(["/auth/login"]);
+
     return false;
   }
 }

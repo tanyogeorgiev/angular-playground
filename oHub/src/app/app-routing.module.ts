@@ -28,7 +28,7 @@ const routes: Routes = [
       { path: 'edit/:id', component: ClientEditComponent },
       // { path: 'detail/:id', component: RecipeDetailComponent},
       { path: 'list', component: ClientListComponent }
-    ]//, canActivate: [AuthGuard]
+    ], canActivate: [AuthGuard]
   },
   {
     path: 'auth', children: [

@@ -1,6 +1,6 @@
 export class ClientInputModel {
   constructor(
-    public id: number,
+    public id: string,
     public name: string,
     public country: string,
     public city: string,

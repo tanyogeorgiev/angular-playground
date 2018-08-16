@@ -1,42 +1,32 @@
 <div class="container">
   <div class="row   justify-content-center align-items-center">
-    <h1 class=" ">Create new CLient!</h1>
-
+    <h1 class=" ">Create new CLIent!</h1>
   </div>
-
-  <div class="row  justify-content-center  ">
-
-    <form (ngSubmit)="onSubmit(itemForm)" class=" justify-content-center" #itemForm="ngForm">
-
+  <form (ngSubmit)="onSubmit()" class=" justify-content-center" #clientForm="ngForm">
+    <div class="row  justify-content-center  ">
       <div class="col-6 ">
         <label for="Name" class="col-form-label col-form-label-sm">Client name</label>
-        <input required type="text" id="Name" name="Name" ngModel class="form-control form-control-sm" placeholder="Client name...">
-
-        <label for="country" class="col-form-label col-form-label-sm">Country</label>
-        <input required type="text" id="country" name="country" ngModel class="form-control form-control-sm" placeholder="Client name...">
-
-        <label for="city" class="col-form-label col-form-label-sm">City</label>
-        <input required type="text" id="city" name="city" ngModel class="form-control form-control-sm" placeholder="Client name...">
-      </div>
-
-
-      <div class="form-group  col-6">
-        <label for="address" class="col-form-label col-form-label-sm">Address</label>
-        <input required type="text" id="address" name="address" ngModel class="form-control form-control-sm" placeholder="Client name...">
-
-
+        <input required type="text" id="Name" name="Name" #name="ngModel" [(ngModel)]="bindingModel.name" class="form-control form-control-sm"
+          placeholder="Client name...">
         <label for="bulstat" class="col-form-label col-form-label-sm">Bulstat</label>
-        <input required type="text" id="bulstat" name="bulstat" ngModel class="form-control form-control-sm" placeholder="Client name...">
-
-
-
+        <input required type="text" id="bulstat" name="bulstat" #bulstat="ngModel" [(ngModel)]="bindingModel.bulstat" class="form-control form-control-sm"
+          placeholder="Client name...">
         <label for="iban" class="col-form-label col-form-label-sm">IBAN</label>
-        <input required type="text" id="iban" name="iban" ngModel class="form-control form-control-sm" placeholder="Client name...">
+        <input required type="text" id="iban" name="iban" #iban="ngModel" [(ngModel)]="bindingModel.iban" class="form-control form-control-sm"
+          placeholder="Client name...">
       </div>
-
-      <button class="btn btn-primary mb-2" type="submit" [disabled]="!itemForm.valid">Register</button>
-    </form>
-
-  </div>
-
+      <div class="form-group  col-6">
+        <label for="country" class="col-form-label col-form-label-sm">Country</label>
+        <input required type="text" id="country" name="country" #country="ngModel" [(ngModel)]="bindingModel.country" class="form-control form-control-sm"
+          placeholder="Client name...">
+        <label for="city" class="col-form-label col-form-label-sm">City</label>
+        <input required type="text" id="city" name="city" #city="ngModel" [(ngModel)]="bindingModel.city" class="form-control form-control-sm"
+          placeholder="Client name...">
+        <label for="address" class="col-form-label col-form-label-sm">Address</label>
+        <input required type="text" id="address" name="address" #address="ngModel" [(ngModel)]="bindingModel.address" class="form-control form-control-sm"
+          placeholder="Client name...">
+      </div>
+      <button class="btn btn-primary mb-2" type="submit" [disabled]="!clientForm.valid">Create</button>
+    </div>
+  </form>
 </div>

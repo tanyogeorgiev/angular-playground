@@ -1,5 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
-body
+.backbody
 {   background-repeat: no-repeat;
    background-image: url("./assets/bckgrnd.jpg");
    background-size: cover;
