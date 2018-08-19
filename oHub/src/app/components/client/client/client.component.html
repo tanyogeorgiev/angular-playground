@@ -1,4 +1,29 @@
-<th scope="row">{{client.name}}</th>
-<td>{{client.bulstat}}</td>
-<td>{{client.country}}</td>
-<td>More details!</td>
+<div class="row   justify-content-center align-items-center">
+  <h1 class=" ">Full information about:</h1>
+
+</div>
+
+<div class="row justify-content-center align-items-center">
+
+  <div *ngIf="clientModel " class="card border-primary mb-3 " style="max-width: 20rem; ">
+
+    <div class="card-header ">{{clientModel.name}}</div>
+    <div class="card-body ">
+      <h4 class="card-title ">Details information!</h4>
+      <p class="card-text ">Country: {{clientModel.country}}</p>
+      <p class="card-text ">City: {{clientModel.city}}</p>
+      <p class="card-text ">Address: {{clientModel.address}}</p>
+      <p class="card-text ">IBAN: {{clientModel.iban}}</p>
+      <div class="row ">
+        <div class="col-sm-4 ">
+          <a class="btn btn-default btn-lg " routerLink="/clients/list">Back to list!</a>
+        </div>
+        <div class="col-sm-2 offset-sm-2 ">
+          <a *ngIf="authService.isAdmin() " class="btn btn-primary btn-lg " routerLink="/clients/edit/{{clientModel.id}}">Edit
+            ME!
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

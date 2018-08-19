@@ -19,7 +19,6 @@ export class HeaderComponent implements OnInit {
   ngOnInit() { }
 
   expand(id: any) {
-    console.log(id)
     if (this.tagid === id) {
       this.tagid = 0
       return

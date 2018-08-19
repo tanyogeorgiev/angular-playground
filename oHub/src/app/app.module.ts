@@ -24,8 +24,10 @@ import { OrderDetailsComponent } from './components/order/order-details/order-de
 import { ItemListComponent } from './components/item/item-list/item-list.component';
 import { ItemComponent } from './components/item/item/item.component';
 import { ItemNewComponent } from './components/item/item-new/item-new.component';
-import { ItemDetailsComponent } from './components/item/item-details/item-details.component';
 import { AuthGuard } from './core/guards/authentication/auth.guard';
+import { ClientListRowComponent } from './components/client/client-list-row/client-list-row.component';
+import { ItemListRowComponent } from './components/item/item-list-row/item-list-row.component';
+
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { AuthGuard } from './core/guards/authentication/auth.guard';
     ItemListComponent,
     ItemComponent,
     ItemNewComponent,
-    ItemDetailsComponent,
+    ClientListRowComponent,
+    ItemListRowComponent,
   ],
   imports: [
     BrowserModule,

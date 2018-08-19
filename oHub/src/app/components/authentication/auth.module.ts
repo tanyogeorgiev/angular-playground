@@ -4,10 +4,12 @@ import { FormsModule } from '@angular/forms';
 
 
 import { authComponents } from './index';
+import { UserSettingsComponent } from './user/user-settings/user-settings.component';
 
 @NgModule({
   declarations: [
-    ...authComponents
+    ...authComponents,
+    UserSettingsComponent
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,37 @@
-<p>
-  client-edit works!
-</p>
+<div class="container">
+  <div class="row   justify-content-center align-items-center">
+    <h1 class=" ">You want to edit this Client? C'mon do it!</h1>
+
+  </div>
+  <div class="row   justify-content-left ">
+    <a class="btn btn-default btn-lg " routerLink="/clients/list">Back to list!</a>
+  </div>
+  <form *ngIf="clientModel" (ngSubmit)="onSubmit()" class=" justify-content-center" #clientForm="ngForm">
+    <div class="row  justify-content-center  ">
+      <div class="col-6 ">
+        <label for="Name" class="col-form-label col-form-label-sm">Client name</label>
+        <input required type="text" id="Name" name="Name" #name="ngModel" [(ngModel)]="clientModel.name" class="form-control form-control-sm"
+          placeholder="Client name...">
+        <label for="bulstat" class="col-form-label col-form-label-sm">Bulstat</label>
+        <input required type="text" id="bulstat" name="bulstat" #bulstat="ngModel" [(ngModel)]="clientModel.bulstat" class="form-control form-control-sm"
+          placeholder="Client name...">
+        <label for="iban" class="col-form-label col-form-label-sm">IBAN</label>
+        <input required type="text" id="iban" name="iban" #iban="ngModel" [(ngModel)]="clientModel.iban" class="form-control form-control-sm"
+          placeholder="Client name...">
+      </div>
+      <div class="form-group  col-6">
+        <label for="country" class="col-form-label col-form-label-sm">Country</label>
+        <input required type="text" id="country" name="country" #country="ngModel" [(ngModel)]="clientModel.country" class="form-control form-control-sm"
+          placeholder="Client name...">
+        <label for="city" class="col-form-label col-form-label-sm">City</label>
+        <input required type="text" id="city" name="city" #city="ngModel" [(ngModel)]="clientModel.city" class="form-control form-control-sm"
+          placeholder="Client name...">
+        <label for="address" class="col-form-label col-form-label-sm">Address</label>
+        <input required type="text" id="address" name="address" #address="ngModel" [(ngModel)]="clientModel.address" class="form-control form-control-sm"
+          placeholder="Client name...">
+
+      </div>
+      <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="!clientForm.valid">Change ME!</button>
+    </div>
+  </form>
+</div>

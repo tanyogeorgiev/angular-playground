@@ -15,7 +15,7 @@ export class ClientNewComponent implements OnInit {
     private clientService: ClientsService,
     private router: Router,
     private toastr: ToastrService) {
-    this.bindingModel = new ClientInputModel('', '', '', '', '', 1, '');
+    this.bindingModel = new ClientInputModel('', '', '', '', '', null, '');
   }
 
   ngOnInit() {
@@ -24,7 +24,7 @@ export class ClientNewComponent implements OnInit {
     this.clientService
       .createClient(this.bindingModel)
       .subscribe(() => {
-        this.router.navigate(['/'])
+        this.router.navigate(['/clients/list'])
         this.toastr.success('Client created!', 'Success!')
       })
 

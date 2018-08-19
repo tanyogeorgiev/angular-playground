@@ -15,9 +15,9 @@ export class AppComponent implements OnInit {
   constructor(private rendered: Renderer2, private router: Router) {
     this.router.events
       .subscribe((event) => {
-        console.log(event)
         if (event instanceof NavigationStart
-          && (event.url.startsWith('/auth') || event.url === '/')) {
+          && (event.url.startsWith('/auth') || event.url === '/')
+          && (!event.url.startsWith('/auth/user'))) {
           this.rendered.addClass(document.body, 'backbody')
         }
         else if (event instanceof NavigationStart) {
@@ -30,7 +30,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     firebase.initializeApp({
       apiKey: "AIzaSyCb2vah0Q4loHpvwM2RV6l8dn5EUCNy-F8",
-      authDomain: "ohubsystem.firebaseapp.com"
+      authDomain: "ohubsystem.firebaseapp.com",
+      databaseURL: "https://ohubsystem.firebaseio.com/",
     })
   }
 }

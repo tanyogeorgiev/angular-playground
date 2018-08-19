@@ -8,6 +8,9 @@ import { ClientListComponent } from './components/client/client-list/client-list
 import { ClientComponent } from './components/client/client/client.component';
 import { ClientEditComponent } from './components/client/client-edit/client-edit.component';
 import { ClientNewComponent } from './components/client/client-new/client-new.component';
+import { ItemListComponent } from './components/item/item-list/item-list.component';
+import { ItemNewComponent } from './components/item/item-new/item-new.component';
+import { UserSettingsComponent } from './components/authentication/user/user-settings/user-settings.component';
 
 
 const routes: Routes = [
@@ -26,14 +29,24 @@ const routes: Routes = [
       { path: '', component: ClientListComponent },
       { path: 'new', component: ClientNewComponent },
       { path: 'edit/:id', component: ClientEditComponent },
-      // { path: 'detail/:id', component: RecipeDetailComponent},
+      { path: 'detail/:id', component: ClientComponent },
       { path: 'list', component: ClientListComponent }
+    ], canActivate: [AuthGuard]
+  },
+  {
+    path: 'items', children: [
+      { path: '', component: ItemListComponent },
+      { path: 'new', component: ItemNewComponent },
+      // { path: 'edit/:id', component: ClientEditComponent },
+      { path: 'list', component: ItemListComponent }
     ], canActivate: [AuthGuard]
   },
   {
     path: 'auth', children: [
       { path: 'login', component: LoginFormComponent },
-      { path: 'register', component: RegisterFormComponent }
+      { path: 'register', component: RegisterFormComponent },
+      { path: 'user/settings', component: UserSettingsComponent }
+
     ]
   }
 ]

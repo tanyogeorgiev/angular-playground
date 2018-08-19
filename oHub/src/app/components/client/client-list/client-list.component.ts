@@ -9,16 +9,17 @@ import { ClientsService } from '../../../core/services/clients/clients.service';
   styleUrls: ['./client-list.component.css']
 })
 export class ClientListComponent implements OnInit {
-  clients$: ClientInputModel[];
+  clientsViewModel: ClientInputModel[];
   constructor(
     private clients: ClientsService
   ) { }
 
   ngOnInit() {
+    console.log('ONINIT')
     this.clients.getAllClient()
       .subscribe((data) => {
-        console.log(data)
-        this.clients$ = data
+
+        this.clientsViewModel = data
       })
   }
 

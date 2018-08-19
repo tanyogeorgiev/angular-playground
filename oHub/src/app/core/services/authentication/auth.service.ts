@@ -6,20 +6,32 @@ import { Router } from "@angular/router";
 import * as firebase from 'firebase';
 import { RegisterInputModel } from "../../models/input-models/register.input.model";
 import { ToastrService } from "../../../../../node_modules/ngx-toastr";
+import { UserModel } from "../../models/input-models/user.model";
+
+import { BehaviorSubject } from "rxjs";
+import { UserService } from "./user.service";
+import { UserRole } from "../../models/input-models/user-role.model";
 
 @Injectable()
 export class AuthService {
   public redirectUrl: string;
   public token: string;
+  public user: UserModel
+
 
 
   constructor(
-    private httpService: HttpClientService,
+    private userService: UserService,
     private router: Router,
-    private toastr: ToastrService
-  ) { }
+    private toastr: ToastrService,
+
+  ) {
+    this.user = new UserModel([])
+
+  }
 
   login(loginModel: LoginInputModel): void {
+
     firebase
       .auth()
       .signInWithEmailAndPassword(loginModel.email, loginModel.password)
@@ -29,8 +41,8 @@ export class AuthService {
           .then((token: string) => {
             this.token = token;
             localStorage.setItem('token', token);
+            this.setRoles();
           })
-
         this.toastr.success('Welcome back to the oHub! ', 'SUCCESS!!');
         this.router.navigate(['/']);
       })
@@ -60,10 +72,12 @@ export class AuthService {
     firebase.auth().signOut();
     localStorage.clear()
     this.token = null;
+    this.user = new UserModel([]);
     this.router.navigate([""])
   }
 
   getToken() {
+
     firebase
       .auth().currentUser
       .getIdToken()
@@ -75,13 +89,45 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
+    // console.log(this.isAdmin())
+    this.token = localStorage.getItem('token')
     return this.token != null;
   }
 
   isAdmin(): boolean {
-    return true;
-  }
+    let isCurrentUserIsAdmin = false
+    let currentUserAdminRole = localStorage.getItem('adminRole')
+    if (currentUserAdminRole) {
+      isCurrentUserIsAdmin = true;
+    }
+    else {
+      isCurrentUserIsAdmin = this.user.roles.some(role => role.name === 'admin' && role.active)
+      if (isCurrentUserIsAdmin) {
+        localStorage.setItem('adminRole', 'true')
+      }
+    }
 
+
+    return isCurrentUserIsAdmin;
+  }
+  setRoles() {
+    let userId = firebase.auth().currentUser.uid
+
+    if (userId) {
+      this.userService.getRolesByUserId(userId, this.token)
+        .subscribe((data) => {
+          let dataRoles = data['roles']
+          const items = Object.keys(dataRoles);
+          const userRoles: UserRole[] = [];
+          for (let i of items) {
+            userRoles.push(new UserRole(i, dataRoles[i]))
+          }
+          this.user = new UserModel(userRoles)
+
+          console.log(this.user)
+        })
+    }
+  }
   tryNavigate() {
     if (this.redirectUrl) {
       this.router.navigate([this.redirectUrl]);
