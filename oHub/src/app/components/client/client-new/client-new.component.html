@@ -10,7 +10,7 @@
           placeholder="Client name...">
         <label for="bulstat" class="col-form-label col-form-label-sm">Bulstat</label>
         <input required type="text" id="bulstat" name="bulstat" #bulstat="ngModel" [(ngModel)]="bindingModel.bulstat" class="form-control form-control-sm"
-          placeholder="Client name...">
+          placeholder="Bulstat...">
         <label for="iban" class="col-form-label col-form-label-sm">IBAN</label>
         <input required type="text" id="iban" name="iban" #iban="ngModel" [(ngModel)]="bindingModel.iban" class="form-control form-control-sm"
           placeholder="Client name...">
@@ -18,13 +18,13 @@
       <div class="form-group  col-6">
         <label for="country" class="col-form-label col-form-label-sm">Country</label>
         <input required type="text" id="country" name="country" #country="ngModel" [(ngModel)]="bindingModel.country" class="form-control form-control-sm"
-          placeholder="Client name...">
+          placeholder="Country name...">
         <label for="city" class="col-form-label col-form-label-sm">City</label>
         <input required type="text" id="city" name="city" #city="ngModel" [(ngModel)]="bindingModel.city" class="form-control form-control-sm"
-          placeholder="Client name...">
+          placeholder="City name...">
         <label for="address" class="col-form-label col-form-label-sm">Address</label>
         <input required type="text" id="address" name="address" #address="ngModel" [(ngModel)]="bindingModel.address" class="form-control form-control-sm"
-          placeholder="Client name...">
+          placeholder="Address name...">
       </div>
       <button class="btn btn-primary mb-2" type="submit" [disabled]="!clientForm.valid">Create</button>
     </div>

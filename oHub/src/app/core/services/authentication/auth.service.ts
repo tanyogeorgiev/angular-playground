@@ -26,7 +26,7 @@ export class AuthService {
     private toastr: ToastrService,
 
   ) {
-    this.user = new UserModel([])
+    this.user = new UserModel('', '', '', '', '', [])
 
   }
 
@@ -72,7 +72,7 @@ export class AuthService {
     firebase.auth().signOut();
     localStorage.clear()
     this.token = null;
-    this.user = new UserModel([]);
+    this.user = new UserModel('', '', '', '', '', []);
     this.router.navigate([""])
   }
 
@@ -122,7 +122,7 @@ export class AuthService {
           for (let i of items) {
             userRoles.push(new UserRole(i, dataRoles[i]))
           }
-          this.user = new UserModel(userRoles)
+          this.user = new UserModel('', '', '', '', '', userRoles)
 
           console.log(this.user)
         })

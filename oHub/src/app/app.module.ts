@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from "@angular/router";
 
@@ -27,6 +27,7 @@ import { ItemNewComponent } from './components/item/item-new/item-new.component'
 import { AuthGuard } from './core/guards/authentication/auth.guard';
 import { ClientListRowComponent } from './components/client/client-list-row/client-list-row.component';
 import { ItemListRowComponent } from './components/item/item-list-row/item-list-row.component';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 
 @NgModule({
@@ -60,7 +61,14 @@ import { ItemListRowComponent } from './components/item/item-list-row/item-list-
     ServiceModule,
     AuthModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard,
+    [{
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true
+    }
+    ]],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
