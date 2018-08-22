@@ -1,0 +1,17 @@
+<td>
+  {{client.name}}
+</td>
+<td>{{client.bulstat}}</td>
+<td>{{client.country}}</td>
+<td>
+  <div class="row">
+    <div class="col-sm-3">
+      <button class="btn btn-primary btn-lg " routerLink="/clients/detail/{{client.id}}">View Details</button>
+    </div>
+    <div class="col-sm-3 offset-sm-1">
+      <button *ngIf="authService.isAdmin()" class="btn btn-danger btn-lg " (click)="onDeleteClient(client.id)">Delete
+      </button>
+    </div>
+
+  </div>
+</td>

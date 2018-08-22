@@ -26,13 +26,13 @@ export class AuthService {
     private toastr: ToastrService,
 
   ) {
-    this.user = new UserModel('', '', '', '', '', '', new UserRole({}))
+    this.user = new UserModel('', '', '', '', '', '', new UserRole(false, true))
 
   }
 
-  login(loginModel: LoginInputModel): void {
+  login(loginModel: LoginInputModel): Promise<void> {
 
-    firebase
+    return firebase
       .auth()
       .signInWithEmailAndPassword(loginModel.email, loginModel.password)
       .then(() => {
@@ -59,8 +59,13 @@ export class AuthService {
         registerModel.email,
         registerModel.password)
       .then(() => {
-        this.toastr.success('You are ready! Come and log in!', 'SUCCESS!!');
-        this.router.navigate(['/auth/login']);
+        this.login(registerModel).then(() => {
+          let currentUserSettingsModel = new UserModel('', '', '', '', '', '', new UserRole(false, true))
+          currentUserSettingsModel.id = firebase.auth().currentUser.uid
+          this.userService.updateAdminUserInformation(currentUserSettingsModel)
+          this.toastr.success('You are ready! Come and log in!', 'SUCCESS!!');
+          this.router.navigate(['/auth/login']);
+        })
       })
       .catch(err => {
         this.toastr.error(err.message, 'Warning!');
@@ -73,7 +78,7 @@ export class AuthService {
     firebase.auth().signOut();
     localStorage.clear()
     this.token = null;
-    this.user = new UserModel('', '', '', '', '', '', new UserRole({}));
+    this.user = new UserModel('', '', '', '', '', '', new UserRole(false, true));
     this.router.navigate([""])
   }
 

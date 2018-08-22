@@ -1,0 +1,21 @@
+<td>
+  {{user.id}}
+</td>
+<td>
+  {{user.username}}
+</td>
+<td>{{user.firstName}}</td>
+<td>{{user.lastName}}</td>
+<td>{{user.position}}</td>
+<td>
+  <div class="row">
+    <div class="col-sm-3">
+      <button class="btn btn-primary btn-lg" routerLink="/admin/users/settings/{{user.id}}">View Details</button>
+    </div>
+    <div class="col-sm-3 offset-sm-1">
+      <button *ngIf="authService.isAdmin()" class="btn btn-danger btn-lg" (click)="onDeleteUser(user.id)">Delete
+      </button>
+    </div>
+
+  </div>
+</td>

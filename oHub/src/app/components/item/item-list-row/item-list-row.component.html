@@ -1,0 +1,16 @@
+<td>
+  {{itemModel.name}}
+</td>
+<td>{{itemModel.defaultPrice}}</td>
+<td>{{itemModel.measureUnit}}</td>
+<td>{{itemModel.description}}</td>
+<td>
+  <div class="row">
+
+    <div class="col-sm-3 offset-sm-1">
+      <button *ngIf="authService.isAdmin()" class="btn btn-danger btn-lg " (click)="onDeleteItem(itemModel.id)">Delete
+      </button>
+    </div>
+
+  </div>
+</td>

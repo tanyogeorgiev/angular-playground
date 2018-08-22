@@ -1,0 +1,51 @@
+<div class="container">
+  <div class="row   justify-content-center align-items-center">
+    <h1 class=" ">Set some additional information and settings!</h1>
+
+  </div>
+  <form *ngIf="userModel" (ngSubmit)="onSubmit()" class=" justify-content-center" #userForm="ngForm">
+    <input type="hidden" id="id" name="id" #id="ngModel" [(ngModel)]="userModel.id" class="form-control form-control-sm">
+    <div class="row justify-content-center ">
+      <div class="col-6 ">
+        <label for="username" class="col-form-label col-form-label-sm">Username</label>
+        <input type="text" id="username" name="username" #username="ngModel" [(ngModel)]="userModel.username" class="form-control form-control-sm "
+          placeholder="Username... ">
+        <label for="firstName" class="col-form-label col-form-label-sm">First Name</label>
+        <input type="text" id="firstName " name="firstName" #firstName="ngModel" [(ngModel)]="userModel.firstName" class="form-control form-control-sm "
+          placeholder="First name... ">
+        <label for="lastName" class="col-form-label col-form-label-sm ">Last Name</label>
+        <input type="text" id="lastName " name="lastName" #lastName="ngModel" [(ngModel)]="userModel.lastName" class="form-control form-control-sm "
+          placeholder="Last name... ">
+      </div>
+      <div class="form-group col-6 ">
+        <label for="phone " class="col-form-label col-form-label-sm ">Phone number</label>
+        <input type="text " id="phone " name="phone" #phone="ngModel" [(ngModel)]="userModel.phone" class="form-control
+      form-control-sm " placeholder="Phone... ">
+        <label for="workPosition " class="col-form-label col-form-label-sm ">Work Position</label>
+        <input type="text " id="workPosition" name="workPosition" #workPosition="ngModel" [(ngModel)]="userModel.workPosition
+      " class="form-control form-control-sm" placeholder="user name... ">
+        <div *ngIf="!authService.isAdmin()">
+          <label for="roles " class="col-form-label col-form-label-sm ">Authorization roles</label>
+          <ul *ngIf="!authService.isAdmin()">
+            <div *ngFor="let role of roleKeys; let i=index ">
+              <li *ngIf="userModel.roles[role]" id="i " name="role">{{role}}</li>
+            </div>
+          </ul>
+        </div>
+        <div *ngIf="authService.isAdmin()">
+          <label class="col-form-label col-form-label-sm  ">Authorization roles</label>
+
+          <div class="form-check ">
+            <label class="col-form-label col-form-label-sm " for="adminRoles ">Admin</label>
+            <input type="checkbox" class="form-control
+          form-control-sm" id="adminRoles " value="Admin" name="adminRoles
+            " #adminRoles="ngModel" [(ngModel)]="userModel.roles['admin'] ">
+          </div>
+        </div>
+      </div>
+
+
+      <button class="btn btn-primary btn-lg btn-block " type="submit " [disabled]="!userForm.valid ">Change ME!</button>
+    </div>
+  </form>
+</div>
