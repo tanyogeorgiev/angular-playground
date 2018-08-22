@@ -11,6 +11,7 @@ import { ClientNewComponent } from './components/client/client-new/client-new.co
 import { ItemListComponent } from './components/item/item-list/item-list.component';
 import { ItemNewComponent } from './components/item/item-new/item-new.component';
 import { UserSettingsComponent } from './components/authentication/user/user-settings/user-settings.component';
+import { UserAdminListComponent } from './components/authentication/user/user-admin-list/user-admin-list.component';
 
 
 const routes: Routes = [
@@ -48,7 +49,15 @@ const routes: Routes = [
       { path: 'user/settings', component: UserSettingsComponent }
 
     ]
+  },
+  {
+    path: 'admin', children: [
+      { path: 'users/list', component: UserAdminListComponent },
+      { path: 'users/settings/:id', component: UserSettingsComponent }
+    ], canActivate: [AuthGuard]
   }
+
+
 ]
 
 @NgModule({

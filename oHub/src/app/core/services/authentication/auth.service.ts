@@ -26,7 +26,7 @@ export class AuthService {
     private toastr: ToastrService,
 
   ) {
-    this.user = new UserModel('', '', '', '', '', [])
+    this.user = new UserModel('', '', '', '', '', '', new UserRole({}))
 
   }
 
@@ -64,6 +64,7 @@ export class AuthService {
       })
       .catch(err => {
         this.toastr.error(err.message, 'Warning!');
+        this.router.navigate(['/auth/login']);
       });
   }
 
@@ -72,7 +73,7 @@ export class AuthService {
     firebase.auth().signOut();
     localStorage.clear()
     this.token = null;
-    this.user = new UserModel('', '', '', '', '', []);
+    this.user = new UserModel('', '', '', '', '', '', new UserRole({}));
     this.router.navigate([""])
   }
 
@@ -101,7 +102,7 @@ export class AuthService {
       isCurrentUserIsAdmin = true;
     }
     else {
-      isCurrentUserIsAdmin = this.user.roles.some(role => role.name === 'admin' && role.active)
+      isCurrentUserIsAdmin = this.user.roles.hasOwnProperty('admin') && this.user.roles['admin']
       if (isCurrentUserIsAdmin) {
         localStorage.setItem('adminRole', 'true')
       }
@@ -117,16 +118,14 @@ export class AuthService {
       this.userService.getRolesByUserId(userId, this.token)
         .subscribe((data) => {
           let dataRoles = data['roles']
-          const items = Object.keys(dataRoles);
-          const userRoles: UserRole[] = [];
-          for (let i of items) {
-            userRoles.push(new UserRole(i, dataRoles[i]))
-          }
-          this.user = new UserModel('', '', '', '', '', userRoles)
-
+          const userRoles: UserRole = data['roles']
+          this.user.roles = userRoles
           console.log(this.user)
         })
     }
+  }
+  getCurrentUserUid() {
+    return firebase.auth().currentUser.uid
   }
   tryNavigate() {
     if (this.redirectUrl) {

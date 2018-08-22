@@ -14,8 +14,7 @@ export class ClientListComponent implements OnInit {
     private clients: ClientsService
   ) { }
 
-  ngOnInit() {
-    console.log('ONINIT')
+  ngOnInit() { 
     this.clients.getAllClient()
       .subscribe((data) => {
 
