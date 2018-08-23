@@ -11,6 +11,7 @@ Web platform for Orders/Requests registration, from trading department...
 ### Home/Register/Login area
   - Register
   - Login
+  
   Only register user can use the application!
   
 ### Administator area
