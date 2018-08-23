@@ -28,6 +28,8 @@ import { AuthGuard } from './core/guards/authentication/auth.guard';
 import { ClientListRowComponent } from './components/client/client-list-row/client-list-row.component';
 import { ItemListRowComponent } from './components/item/item-list-row/item-list-row.component';
 import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { OrderListRowComponent } from './components/order/order-list-row/order-list-row.component';
 
 
 @NgModule({
@@ -48,6 +50,7 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
     ItemNewComponent,
     ClientListRowComponent,
     ItemListRowComponent,
+    OrderListRowComponent,
   ],
   imports: [
     BrowserModule,
@@ -59,7 +62,8 @@ import { ErrorInterceptor } from './core/interceptors/error.interceptor';
     RouterModule,
     AppRoutingModule,
     ServiceModule,
-    AuthModule
+    AuthModule,
+    NgSelectModule
   ],
   providers: [AuthGuard,
     [{

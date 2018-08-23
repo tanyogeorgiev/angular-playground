@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientInputModel } from '../../../core/models/input-models/client.input.model';
-import { Observable } from 'rxjs';
 import { ClientsService } from '../../../core/services/clients/clients.service';
 
 @Component({
@@ -14,7 +13,7 @@ export class ClientListComponent implements OnInit {
     private clients: ClientsService
   ) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.clients.getAllClient()
       .subscribe((data) => {
 

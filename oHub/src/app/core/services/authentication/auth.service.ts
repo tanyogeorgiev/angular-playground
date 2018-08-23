@@ -1,14 +1,12 @@
 import { Injectable } from "@angular/core";
 import { LoginInputModel } from "../../models/input-models/login.input.model";
-import { HttpClientService } from "../http-client.service";
 import { Router } from "@angular/router";
 
 import * as firebase from 'firebase';
+
 import { RegisterInputModel } from "../../models/input-models/register.input.model";
 import { ToastrService } from "../../../../../node_modules/ngx-toastr";
 import { UserModel } from "../../models/input-models/user.model";
-
-import { BehaviorSubject } from "rxjs";
 import { UserService } from "./user.service";
 import { UserRole } from "../../models/input-models/user-role.model";
 
@@ -47,6 +45,7 @@ export class AuthService {
         this.router.navigate(['/']);
       })
       .catch(err => {
+        localStorage.clear()
         this.toastr.error(err.message, 'Warning!');
       });
   }
@@ -68,6 +67,7 @@ export class AuthService {
         })
       })
       .catch(err => {
+        localStorage.clear()
         this.toastr.error(err.message, 'Warning!');
         this.router.navigate(['/auth/login']);
       });
@@ -91,7 +91,9 @@ export class AuthService {
         this.token = token;
       })
 
+
     return this.token;
+
   }
 
   isAuthenticated(): boolean {

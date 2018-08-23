@@ -12,6 +12,9 @@ import { ItemListComponent } from './components/item/item-list/item-list.compone
 import { ItemNewComponent } from './components/item/item-new/item-new.component';
 import { UserSettingsComponent } from './components/authentication/user/user-settings/user-settings.component';
 import { UserAdminListComponent } from './components/authentication/user/user-admin-list/user-admin-list.component';
+import { OrderNewComponent } from './components/order/order-new/order-new.component';
+import { OrderListComponent } from './components/order/order-list/order-list.component';
+import { OrderDetailsComponent } from './components/order/order-details/order-details.component';
 
 
 const routes: Routes = [
@@ -19,11 +22,11 @@ const routes: Routes = [
   {
     path: 'orders', children: [
       { path: '', component: HomeComponent },
-      //  { path: 'new', component: RecipeCreateComponent },
+      { path: 'new', component: OrderNewComponent, canActivate: [AuthGuard] },
       // { path: 'edit/:id', component: RecipeEditComponent },
-      //  { path: 'detail/:id', component: RecipeDetailComponent},
-      //  { path: 'list', component: RecipeListComponent }
-    ]//, canActivate: [AuthGuard]
+      { path: 'detail/:id', component: OrderDetailsComponent },
+      { path: 'list', component: OrderListComponent, canActivate: [AuthGuard] }
+    ]
   },
   {
     path: 'clients', children: [

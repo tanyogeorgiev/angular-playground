@@ -26,13 +26,25 @@ footer   .bottom-center {
   opacity: 1;
 }
 
-.modal.in .modal-dialog {
-  -webkit-transform: translate(0, 0);
-  -ms-transform: translate(0, 0);
-  -o-transform: translate(0, 0);
-  transform: translate(0, 0);
+.ng-select.custom {
+  border:0px;
+  min-height: 0px;
+  border-radius: 0;
+
+
+}
+.ng-select.custom .ng-select-container{
+  min-height:  30px;
+  background: white;
+}
+/*
+.ng-select.custom .ng-dropdown-panel  {
+  min-height: 0px;
+  border-radius: 0;
+  background: gray
 }
 
-.modal-backdrop.in {
-  opacity: 0.5;
-}
+ .ng-dropdown-panel.custom  {
+  background: gray
+} */
+

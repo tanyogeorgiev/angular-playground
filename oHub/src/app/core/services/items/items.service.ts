@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators'; import { ItemInputModel } from '../../models/input-models/item.input.model';
 const baseUrl = `https://ohubsystem.firebaseio.com/items/`;
 import * as firebase from 'firebase';
-import { Subject } from 'rxjs';
+import { Subject, pipe } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -18,7 +18,6 @@ export class ItemsService {
   constructor(
     private authService: AuthService,
     private http: HttpClient
-    ,
   ) { }
 
   createItem(body: ItemInputModel) {
@@ -26,6 +25,23 @@ export class ItemsService {
 
     return this.http.post(`${baseUrl}.json?auth=${token}`, body);
   }
+
+  getAll() {
+    const token = this.authService.getToken();
+
+    return this.http.get(`${baseUrl}.json?auth=${token}`)
+      .pipe(map((res: Response) => {
+        const items = Object.keys(res);
+        const Items: ItemInputModel[] = [];
+        for (let i of items) {
+          Items.push(new ItemInputModel(i, res[i].name,
+            res[i].defaultPrice, res[i].measureUnit, res[i].description));
+        }
+        console.log('item from service: ' + JSON.stringify(Items))
+        return Items
+      }))
+  }
+
 
   getAllItem(key: string, offset: number) {
     const token = this.authService.getToken();

@@ -1,3 +1,21 @@
-<p>
-  order-list works!
-</p>
+<div class="row   justify-content-center align-items-center">
+  <h1 class=" ">All Orders!</h1>
+
+</div>
+<div *ngIf="ordersViewModel">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Number</th>
+        <th scope="col">Date</th>
+        <th scope="col">Client Name</th>
+        <th scope="col">Delivery address</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="table-active" *ngFor=" let order of ordersViewModel ; let i=index " app-order-list-row [order]='order'>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,3 +1,80 @@
-<p>
-  order-new works!
-</p>
+<div class="container">
+  <div class="row   justify-content-center align-items-center">
+    <h1 class=" ">Create new order/request!</h1>
+  </div>
+  <form (ngSubmit)="onSubmit()" class=" justify-content-center" #orderForm="ngForm">
+    <div class="row  justify-content-center  ">
+      <div class="col-6 ">
+        <label for="Number" class="col-form-label col-form-label-sm">Order Number</label>
+        <input required type="number" id="number" name="number" #number="ngModel" [(ngModel)]="bindingModel.number" class="form-control form-control-sm"
+          placeholder="Order number...">
+        <label for="Date" class="col-form-label col-form-label-sm">Order Date</label>
+        <input required type="text" id="date" name="date" #date="ngModel" [(ngModel)]="bindingModel.date" class="form-control form-control-sm"
+          placeholder="Order date...">
+        <label for="country" class="col-form-label col-form-label-sm">Country</label>
+        <input required type="text" id="country" name="country" #country="ngModel" [(ngModel)]="bindingModel.client.country" class="form-control form-control-sm"
+          placeholder="Country name...">
+        <label for="city" class="col-form-label col-form-label-sm">City</label>
+        <input required type="text" id="city" name="city" #city="ngModel" [(ngModel)]="bindingModel.client.city" class="form-control form-control-sm"
+          placeholder="City name...">
+        <label for="address" class="col-form-label col-form-label-sm">Address</label>
+        <input required type="text" id="address" name="address" #address="ngModel" [(ngModel)]="bindingModel.client.address" class="form-control form-control-sm"
+          placeholder="Address name...">
+      </div>
+      <div class="form-group  col-6">
+        <label for="client" class="col-form-label col-form-label-sm">Client Name</label>
+        <ng-select class="custom" (change)="onChangeClient($event)" [items]="clients$ | async" bindLabel="name" bindValue="id" name="client"
+          [(ngModel)]="bindingModel.client.id">
+        </ng-select>
+        <label for="bulstat" class="col-form-label col-form-label-sm">Bulstat</label>
+        <input required type="text" id="bulstat" name="bulstat" #bulstat="ngModel" [(ngModel)]="bindingModel.client.bulstat" class="form-control form-control-sm"
+          placeholder="Bulstat...">
+        <label for="iban" class="col-form-label col-form-label-sm">IBAN</label>
+        <input required type="text" id="iban" name="iban" #iban="ngModel" [(ngModel)]="bindingModel.client.iban" class="form-control form-control-sm"
+          placeholder="Client name...">
+
+        <label for="deliveryAddress" class="col-form-label col-form-label-sm">Delivery Address</label>
+        <textarea rows="4" required type="textarea" id="deliveryAddress" name="deliveryAddress" #deliveryAddress="ngModel" [(ngModel)]="bindingModel.deliveryAddress"
+          class="form-control form-control-sm" placeholder="Delivery address..."></textarea>
+      </div>
+
+    </div>
+    <div class="form-group col-12" *ngFor="let item of bindingModel.items;let i=index; trackBy:indexTracker">
+      <div class="row ">
+        <div class="col-5 ">
+          <label for="itemName-{{i}}" class="col-form-label col-form-label-sm">Item Name</label>
+          <ng-select class="custom" [items]="items$ | async" bindLabel="name" (change)="onSelected($event,i)" bindValue="id" name="itemName-{{i}}"
+            [(ngModel)]="item.id">
+          </ng-select>
+        </div>
+
+        <!--  <input required type="text" id="itemName-{{i}}" name="itemName-{{i}} " #itemName="ngModel" [(ngModel)]="this.item.name
+      " class="form-control form-control-sm " placeholder="Name... ">
+        </div> -->
+
+        <div class="col-2 ">
+          <label for="defaultPrice-{{i}} " class="col-form-label col-form-label-sm ">Item Price</label>
+          <span id="defaultPrice-{{i}}" class="form-control form-control-sm ">{{item.defaultPrice}}</span>
+        </div>
+        <div class="col-1 ">
+          <label for="measureUnit-{{i}} " class="col-form-label col-form-label-sm ">Unit</label>
+          <span id="measureUnit-{{i}} " class="form-control form-control-sm ">{{item.measureUnit}}</span>
+        </div>
+        <div class="col-2 ">
+          <label for="qty-{{i}} " class="col-form-label col-form-label-sm ">Qty</label>
+          <input required type="text " id="qty-{{i}} " name="qty-{{i}} " #qty="ngModel" [(ngModel)]="item.qty" class="form-control form-control-sm "
+            placeholder="Qty... ">
+        </div>
+        <div class="col-1 ">
+          <label for="removeTtem-{{i}} " class="col-form-label col-form-label-sm ">Remove</label>
+          <span id="removeTtem-{{i}} " (click)="deleteItem(i)" class=" btn btn-danger mb-2">-</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="row justify-content-center "><span class="btn btn-primary mb-2 " (click)="addItem() ">+</span></div>
+
+    <div class="row justify-content-center "><button class="btn btn-primary mb-2" type="submit " [disabled]="!orderForm.valid ">Create</button></div>
+  </form>
+
+</div>

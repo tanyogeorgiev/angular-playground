@@ -23,9 +23,7 @@ export class ClientEditComponent implements OnInit {
 
       this.clientService.getById(this.clientId)
         .subscribe((data) => {
-          console.log(data);
-          this.clientModel = data //new ClientInputModel(data['id'], data['name'], data['country'], data.['city'], data['address'], data['bulstat'], data['iban'])
-
+          this.clientModel = data
         })
     })
   }

@@ -66,20 +66,9 @@ export class UserService {
         'lastName': userModel.lastName,
         'username': userModel.username,
         'phone': userModel.phone,
-        'workPosition': userModel.workPosition
+        'workPosition': userModel.workPosition,
+        'roles': userModel.roles
 
-        // })
-        // const body = {
-        //   userId: {
-        //     'firstName': userModel.firstName,
-        //     'lastName': userModel.lastName,
-        //     'username': userModel.username,
-        //     'phone': userModel.phone,
-        //     'workPosition': userModel.workPosition,
-        //     'roles': { 'admin': false }
-        //   }
-        // }
-        // return this.http.post(`${baseUrl}.json?auth=${token}`, body);
       })
     }
   }

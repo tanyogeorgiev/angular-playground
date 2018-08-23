@@ -1,3 +1,55 @@
-<p>
-  order-details works!
-</p>
+<div class="container">
+  <div class="row   justify-content-center align-items-center">
+    <h1 class=" ">View Details for order N {{bindingModel.number}}!</h1>
+  </div>
+  <form class=" justify-content-center">
+    <div class="row  justify-content-center  ">
+      <div class="col-6 ">
+        <label for="Number" class="col-form-label col-form-label-sm">Order Number</label>
+        <span id="number" class="form-control form-control-sm ">{{bindingModel.number}}</span>
+
+        <label for="Date" class="col-form-label col-form-label-sm">Order Date</label>
+        <span id="Date" class="form-control form-control-sm ">{{bindingModel.date}}</span>
+        <label for="country" class="col-form-label col-form-label-sm">Country</label>
+        <span id="country" class="form-control form-control-sm ">{{bindingModel.client.number}}</span>
+        <label for="city" class="col-form-label col-form-label-sm">City</label>
+        <span id="city" class="form-control form-control-sm ">{{bindingModel.client.city}}</span>
+        <label for="address" class="col-form-label col-form-label-sm">Address</label>
+        <span id="address" class="form-control form-control-sm ">{{bindingModel.client.address}}</span>
+      </div>
+      <div class="form-group  col-6">
+        <label for="client" class="col-form-label col-form-label-sm">Client Name</label>
+        <span id="client" class="form-control form-control-sm ">{{bindingModel.client.name}}</span>
+        <label for="bulstat" class="col-form-label col-form-label-sm">Bulstat</label>
+        <span id="bulstat" class="form-control form-control-sm ">{{bindingModel.client.bulstat}}</span>
+        <label for="iban" class="col-form-label col-form-label-sm">IBAN</label>
+        <span id="iban" class="form-control form-control-sm ">{{bindingModel.client.iban}}</span>
+        <label for="deliveryAddress" class="col-form-label col-form-label-sm">Delivery Address</label>
+        <textarea rows="4" id="deliveryAddress" class="form-control form-control-sm"> {{bindingModel.deliveryAddress}}</textarea>
+      </div>
+    </div>
+    <div class="form-group col-12 " *ngFor="let item of bindingModel.items;let i=index; trackBy:indexTracker ">
+      <div class="row ">
+        <div class="col-5 ">
+          <label for="itemName-{{i}} " class="col-form-label col-form-label-sm ">Item Name</label>
+          <span id="itemName-{{i}}" class="form-control form-control-sm ">{{item.name}}</span>
+        </div>
+        <div class="col-2 ">
+          <label for="defaultPrice-{{i}} " class="col-form-label col-form-label-sm ">Item Price</label>
+          <span id="defaultPrice-{{i}} " class="form-control form-control-sm ">{{item.defaultPrice}}</span>
+        </div>
+        <div class="col-1 ">
+          <label for="measureUnit-{{i}} " class="col-form-label col-form-label-sm ">Unit</label>
+          <span id="measureUnit-{{i}} " class="form-control form-control-sm ">{{item.measureUnit}}</span>
+        </div>
+        <div class="col-2 ">
+          <label for="qty-{{i}} " class="col-form-label col-form-label-sm ">Qty</label>
+          <span id="qty-{{i}} " class="form-control form-control-sm ">{{item.qty}}</span>
+          <div class="col-1 ">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-center"> <a class="btn btn-default btn-lg" routerLink="/orders/list"> Back to list!</a></div>
+  </form>
+</div>
