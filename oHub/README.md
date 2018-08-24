@@ -1,5 +1,45 @@
 # Ohub
+## Description:
+Web platform for Orders/Requests registration, from trading department...
+## Client side 
+- Angular version 6.0.8.
 
+## Server side 
+- Firebase  (API configuration will be deleted soon (if not), so you can set your own.. You don't need to create server side models in advance, they will be created at runtime...
+
+# Application Structure and functionality
+### Home/Register/Login area
+  - Register
+  - Login
+  
+  Only register user can use the application!
+  
+### Administator area
+-  Clients - CRUD
+-  Items - create/view/delete
+-  Orders - create/view 
+-  Users settings (all) - edit/view/delete
+
+### Guest/Trading area
+-  Clients - view
+-  Items - view
+-  Orders - create/view 
+-  Users settings (own) - edit/view/delete
+
+
+## Author
+
+Tanyo Georgiev
+
+---
+
+## License
+
+This project is licensed under the MIT License
+
+---
+  
+# Below is Common information from CLI( Auto generated)
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
 ## Development server
