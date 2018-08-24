@@ -1,0 +1,18 @@
+<td>
+  {{order.number}}
+</td>
+<td>{{order.date}}</td>
+<td>{{order.client.name}}</td>
+<td>{{order.deliveryAddress}}</td>
+<td>
+  <div class="row">
+    <div class="col-sm-3">
+      <button class="btn btn-primary btn-lg " routerLink="/orders/detail/{{order.id}}">View Details</button>
+    </div>
+    <div class="col-sm-3 offset-sm-1">
+      <button *ngIf="authService.isAdmin()" class="btn btn-danger btn-lg " (click)="onDeleteOrder(order.id)">Delete
+      </button>
+    </div>
+
+  </div>
+</td>
