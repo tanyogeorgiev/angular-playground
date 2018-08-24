@@ -2,21 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import * as firebase from 'firebase';
 import { map, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { UserModel } from '../../models/input-models/user.model';
+import { UserRole } from '../../models/input-models/user-role.model';
 const baseUrl = `https://ohubsystem.firebaseio.com/users/`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
+  token: string
+  user: UserModel
   constructor(
 
     private http: HttpClient,
     private router: Router
 
-  ) { }
+  ) {
+    this.token = this.getToken()
+  }
 
   getAllUsers() {
     let token = localStorage.getItem('token')
@@ -52,6 +58,8 @@ export class UserService {
       'phone': userModel.phone,
       'workPosition': userModel.workPosition,
       'roles': userModel.roles
+    }).then(() => {
+      this.user = userModel
     })
   }
 
@@ -69,6 +77,8 @@ export class UserService {
         'workPosition': userModel.workPosition,
         'roles': userModel.roles
 
+      }).then(() => {
+        this.user = userModel
       })
     }
   }
@@ -88,7 +98,7 @@ export class UserService {
 
     return this.http.get(`${baseUrl}${id}.json?auth=${token}`)
       .pipe(map((res: Response) => {
-        console.log(res)
+     //   console.log(res)
         return res
       }));
 
@@ -113,5 +123,37 @@ export class UserService {
         })
 
       );
+  }
+  setRoles() {
+    let userId = firebase.auth().currentUser.uid
+    let token = localStorage.getItem('token')
+    if (userId) {
+      this.getRolesByUserId(userId, token)
+        .subscribe((data) => {
+          this.user = {
+            'id': this.getCurrentUserUid(),
+            'firstName': data['firstName'],
+            'lastName': data['lastNamev'],
+            'username': data['username'],
+            'phone': data['phone'],
+            'workPosition': data['workPosition'],
+            'roles': data['roles']
+          }
+
+          let dataRoles = data['roles']
+          const userRoles: UserRole = data['roles']
+          this.user.roles = userRoles
+
+        })
+    }
+    else {
+      this.user = new UserModel('', 'Guest', '', '', '', '', new UserRole(false, true))
+    }
+  }
+  private getToken() {
+    return localStorage.getItem('token')
+  }
+  private getCurrentUserUid() {
+    return firebase.auth().currentUser.uid
   }
 }

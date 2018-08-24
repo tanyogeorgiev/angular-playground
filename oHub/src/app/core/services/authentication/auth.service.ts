@@ -9,6 +9,7 @@ import { ToastrService } from "../../../../../node_modules/ngx-toastr";
 import { UserModel } from "../../models/input-models/user.model";
 import { UserService } from "./user.service";
 import { UserRole } from "../../models/input-models/user-role.model";
+import { IfStmt } from "@angular/compiler";
 
 @Injectable()
 export class AuthService {
@@ -24,7 +25,14 @@ export class AuthService {
     private toastr: ToastrService,
 
   ) {
-    this.user = new UserModel('', '', '', '', '', '', new UserRole(false, true))
+    if (!this.user) {
+      localStorage.clear()
+
+      this.userService.user = new UserModel('', 'Guest', '', '', '', '', new UserRole(false, true))
+    }
+    else {
+      this.userService.setRoles()
+    }
 
   }
 
@@ -39,10 +47,11 @@ export class AuthService {
           .then((token: string) => {
             this.token = token;
             localStorage.setItem('token', token);
-            this.setRoles();
+            this.userService.setRoles();
           })
         this.toastr.success('Welcome back to the oHub! ', 'SUCCESS!!');
         this.router.navigate(['/']);
+
       })
       .catch(err => {
         localStorage.clear()
@@ -59,7 +68,7 @@ export class AuthService {
         registerModel.password)
       .then(() => {
         this.login(registerModel).then(() => {
-          let currentUserSettingsModel = new UserModel('', '', '', '', '', '', new UserRole(false, true))
+          let currentUserSettingsModel = new UserModel('', 'Guest', '', '', '', '', new UserRole(false, true))
           currentUserSettingsModel.id = firebase.auth().currentUser.uid
           this.userService.updateAdminUserInformation(currentUserSettingsModel)
           this.toastr.success('You are ready! Come and log in!', 'SUCCESS!!');
@@ -78,7 +87,7 @@ export class AuthService {
     firebase.auth().signOut();
     localStorage.clear()
     this.token = null;
-    this.user = new UserModel('', '', '', '', '', '', new UserRole(false, true));
+    this.userService.user = new UserModel('', 'Guest', '', '', '', '', new UserRole(false, true));
     this.router.navigate([""])
   }
 
@@ -109,7 +118,7 @@ export class AuthService {
       isCurrentUserIsAdmin = true;
     }
     else {
-      isCurrentUserIsAdmin = this.user.roles.hasOwnProperty('admin') && this.user.roles['admin']
+      isCurrentUserIsAdmin = this.userService.user.roles.hasOwnProperty('admin') && this.userService.user.roles['admin']
       if (isCurrentUserIsAdmin) {
         localStorage.setItem('adminRole', 'true')
       }
@@ -118,19 +127,8 @@ export class AuthService {
 
     return isCurrentUserIsAdmin;
   }
-  setRoles() {
-    let userId = firebase.auth().currentUser.uid
 
-    if (userId) {
-      this.userService.getRolesByUserId(userId, this.token)
-        .subscribe((data) => {
-          let dataRoles = data['roles']
-          const userRoles: UserRole = data['roles']
-          this.user.roles = userRoles
-          console.log(this.user)
-        })
-    }
-  }
+
   getCurrentUserUid() {
     return firebase.auth().currentUser.uid
   }

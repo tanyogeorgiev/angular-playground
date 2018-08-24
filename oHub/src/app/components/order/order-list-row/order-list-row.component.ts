@@ -14,7 +14,7 @@ export class OrderListRowComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.order)
+   // console.log(this.order)
   }
 
 }

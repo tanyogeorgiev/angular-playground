@@ -19,7 +19,7 @@ export class OrderListComponent implements OnInit {
     this.orderService.getAllOrders()
       .subscribe((data) => {
         this.ordersViewModel = data
-        console.log('what the fuck' + JSON.stringify(this.ordersViewModel))
+        // console.log('what the fuck' + JSON.stringify(this.ordersViewModel))
       })
   }
 

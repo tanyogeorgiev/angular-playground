@@ -44,10 +44,10 @@ export class ItemListComponent implements OnInit {
   }
 
   prevPage() {
-    console.log(this.prevKeys)
+   // console.log(this.prevKeys)
     const prevKey = this.prevKeys[this.prevKeys.length - 1] // use last key in array
     this.prevKeys.pop()   // then remove the last key in the array
-    console.log(this.prevKeys)
+  //  console.log(this.prevKeys)
     this.getItems(prevKey)
   }
 

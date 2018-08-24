@@ -10,11 +10,11 @@ export class RegisterFormComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    console.log(this)
+    //  console.log(this)
   }
 
   onSubmit(formData: NgForm) {
-    console.log(formData.value)
+    // console.log(formData.value)
 
     const registerModel: RegisterInputModel = {
       email: formData.value.email,

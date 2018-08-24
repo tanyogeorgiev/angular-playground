@@ -26,7 +26,7 @@ export class ItemListRowComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('on init item-list-row: ' + JSON.stringify(this.itemModel))
+   // console.log('on init item-list-row: ' + JSON.stringify(this.itemModel))
   }
 
   onDeleteItem(id: string) {

@@ -42,7 +42,7 @@
     </ul>
     <ul class="navbar-nav">
       <li *ngIf="authService.isAuthenticated()" class="nav-item mr-auto">
-        <a class="nav-link" routerLink="/auth/user/settings">User settings</a>
+        <a class="nav-link" routerLink="/auth/user/settings">[{{userService.user.firstName}}] User settings</a>
       </li>
       <li *ngIf="authService.isAuthenticated()" class="nav-item mr-auto">
         <a class="nav-link" routerLink (click)="Logout()">Logout</a>

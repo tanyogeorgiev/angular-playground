@@ -30,9 +30,9 @@ export class UserSettingsComponent implements OnInit {
       this.userId = params['id'];
       if (!this.userId) this.userId = this.authService.getCurrentUserUid()
       this.userService.getuserInformation(this.userId).subscribe((data) => {
-        console.log('oninit with user Information: ' + JSON.stringify(data))
+      //  console.log('oninit with user Information: ' + JSON.stringify(data))
         this.userModel = data
-        console.log(this.userModel)
+      //  console.log(this.userModel)
         if (!this.userModel) {
           this.userModel = new UserModel('', '', '', '', '', '', new UserRole(false, true))
         }

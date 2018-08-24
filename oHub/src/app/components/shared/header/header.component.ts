@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../core/services/authentication/auth.service';
+import { UserService } from '../../../core/services/authentication/user.service';
 
 @Component({
   selector: 'app-header',
@@ -13,10 +14,12 @@ export class HeaderComponent implements OnInit {
   tagid: any = 0
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private userService: UserService
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   expand(id: any) {
     if (this.tagid === id) {

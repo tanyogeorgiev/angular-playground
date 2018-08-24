@@ -37,7 +37,7 @@ export class ItemsService {
           Items.push(new ItemInputModel(i, res[i].name,
             res[i].defaultPrice, res[i].measureUnit, res[i].description));
         }
-        console.log('item from service: ' + JSON.stringify(Items))
+      //  console.log('item from service: ' + JSON.stringify(Items))
         return Items
       }))
   }

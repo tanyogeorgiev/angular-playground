@@ -41,7 +41,7 @@ export class OrderNewComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('SUBMITTED');
+   // console.log('SUBMITTED');
     this.orderService.createOrUpdate(this.bindingModel)
       .then((res) => {
         this.router.navigate(['/'])
