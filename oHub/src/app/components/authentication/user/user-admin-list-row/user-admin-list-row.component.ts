@@ -23,19 +23,7 @@ export class UserAdminListRowComponent implements OnInit {
     //   return false;
     //}
   }
-
-
-
   ngOnInit() {
   }
-  onDeleteClient(id: string) {
-    // this.userService.deleteUser(id)
-    //   .subscribe(() => {
-    //     this.toastr.success('There is no turning back... you destroy him...', 'SUCCESS!');
 
-    //     this.router.navigated = false;
-
-    //     this.router.navigate(['/clients/list']);
-    //   })
-  }
 }

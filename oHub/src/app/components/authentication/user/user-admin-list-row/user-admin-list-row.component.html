@@ -12,10 +12,5 @@
     <div class="col-sm-3">
       <button class="btn btn-primary btn-lg" routerLink="/admin/users/settings/{{user.id}}">View Details</button>
     </div>
-    <div class="col-sm-3 offset-sm-3">
-      <button *ngIf="authService.isAdmin()" class="btn btn-danger btn-lg" (click)="onDeleteUser(user.id)">Delete
-      </button>
-    </div>
-
   </div>
 </td>

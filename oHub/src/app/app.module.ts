@@ -1,56 +1,28 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from "@angular/router";
-
-import { AppComponent } from './app.component';
-import { SharedModule } from './components/shared/shared.module';
-import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './components/home/home.component';
-import { ServiceModule } from './core/services/services.module';
-import { AuthModule } from './components/authentication/auth.module';
-import { OrderListComponent } from './components/order/order-list/order-list.component';
-import { OrderComponent } from './components/order/order/order.component';
-import { ClientListComponent } from './components/client/client-list/client-list.component';
-import { ClientComponent } from './components/client/client/client.component';
-import { ClientEditComponent } from './components/client/client-edit/client-edit.component';
-import { ClientNewComponent } from './components/client/client-new/client-new.component';
-import { OrderNewComponent } from './components/order/order-new/order-new.component';
-import { OrderEditComponent } from './components/order/order-edit/order-edit.component';
-import { OrderDetailsComponent } from './components/order/order-details/order-details.component';
-import { ItemListComponent } from './components/item/item-list/item-list.component';
-import { ItemComponent } from './components/item/item/item.component';
-import { ItemNewComponent } from './components/item/item-new/item-new.component';
-import { AuthGuard } from './core/guards/authentication/auth.guard';
-import { ClientListRowComponent } from './components/client/client-list-row/client-list-row.component';
-import { ItemListRowComponent } from './components/item/item-list-row/item-list-row.component';
-import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { OrderListRowComponent } from './components/order/order-list-row/order-list-row.component';
+import { ToastrModule } from 'ngx-toastr';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { AuthModule } from './components/authentication/auth.module';
+import { ClientModule } from './components/client/client.module';
+import { HomeComponent } from './components/home/home.component';
+import { ItemModule } from './components/item/item.module';
+import { OrderModule } from './components/order/order.module';
+import { SharedModule } from './components/shared/shared.module';
+import { AuthGuard } from './core/guards/authentication/auth.guard';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { ServiceModule } from './core/services/services.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    OrderListComponent,
-    OrderComponent,
-    ClientListComponent,
-    ClientComponent,
-    ClientEditComponent,
-    ClientNewComponent,
-    OrderNewComponent,
-    OrderEditComponent,
-    OrderDetailsComponent,
-    ItemListComponent,
-    ItemComponent,
-    ItemNewComponent,
-    ClientListRowComponent,
-    ItemListRowComponent,
-    OrderListRowComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,7 +35,10 @@ import { OrderListRowComponent } from './components/order/order-list-row/order-l
     AppRoutingModule,
     ServiceModule,
     AuthModule,
-    NgSelectModule
+    NgSelectModule,
+    ClientModule,
+    ItemModule,
+    OrderModule
   ],
   providers: [AuthGuard,
     [{
