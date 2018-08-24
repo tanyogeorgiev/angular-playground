@@ -37,7 +37,7 @@ export class ItemsService {
           Items.push(new ItemInputModel(i, res[i].name,
             res[i].defaultPrice, res[i].measureUnit, res[i].description));
         }
-      //  console.log('item from service: ' + JSON.stringify(Items))
+        //  console.log('item from service: ' + JSON.stringify(Items))
         return Items
       }))
   }
@@ -54,13 +54,15 @@ export class ItemsService {
   }
 
   callback(val) {
-    const items = Object.keys(val);
-    const Items: ItemInputModel[] = [];
-    for (let i of items) {
-      Items.push(new ItemInputModel(i, val[i].name,
-        val[i].defaultPrice, val[i].measureUnit, val[i].description));
+    if (val) {
+      const items = Object.keys(val);
+      const Items: ItemInputModel[] = [];
+      for (let i of items) {
+        Items.push(new ItemInputModel(i, val[i].name,
+          val[i].defaultPrice, val[i].measureUnit, val[i].description));
+      }
+      return this.valueChanged$.next(Items); // pass whatever you need to receive in the subscription
     }
-    return this.valueChanged$.next(Items); // pass whatever you need to receive in the subscription
   }
 
   getById(id: string) {

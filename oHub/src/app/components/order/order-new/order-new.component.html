@@ -54,7 +54,9 @@
 
         <div class="col-2 ">
           <label for="defaultPrice-{{i}} " class="col-form-label col-form-label-sm ">Item Price</label>
-          <span id="defaultPrice-{{i}}" class="form-control form-control-sm ">{{item.defaultPrice}}</span>
+          <span id="defaultPrice-{{i}}" class="form-control form-control-sm ">{{item.defaultPrice ? item.defaultPrice : '0'
+            }}
+          </span>
         </div>
         <div class="col-1 ">
           <label for="measureUnit-{{i}} " class="col-form-label col-form-label-sm ">Unit</label>
